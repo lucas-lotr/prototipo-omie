@@ -4,6 +4,25 @@
   margin-right: 30px;
 }
 
+#negocios .row-title {
+  margin-top: 30px;
+}
+
+.separator-title {
+  background-color: #969faa;
+  width: 3px;
+  height: 57px;
+}
+
+.column-title {
+  height: 57px;
+  background-color: #e0e6ed;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 20px;
+  text-align: center;
+}
+
 .button-add-client {
   height: 50px;
   /* font-family: Lato; */
