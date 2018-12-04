@@ -2,12 +2,12 @@ import React, { Component } from "react";
 import "./App.css";
 import Business from "./components/Business/Business";
 
-class client {
-  constructor(name, company) {
-    this.name = name;
-    this.company = company;
-  }
-}
+// class client {
+//   constructor(name, company) {
+//     this.name = name;
+//     this.company = company;
+//   }
+// }
 
 class App extends Component {
   state = {
