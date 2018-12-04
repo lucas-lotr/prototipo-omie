@@ -1,6 +1,7 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import logo from "./logo.svg";
+import { Button } from "antd";
+import "./App.css";
 
 class App extends Component {
   render() {
@@ -17,7 +18,7 @@ class App extends Component {
             target="_blank"
             rel="noopener noreferrer"
           >
-            Learn React
+            <Button type="primary">Button</Button>
           </a>
         </header>
       </div>
