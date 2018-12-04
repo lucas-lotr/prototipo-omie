@@ -5,8 +5,10 @@ import "./Business.css";
 class Business extends Component {
   render() {
     return (
-      <div>
-        <Button>aqui</Button>
+      <div id="negocios">
+        <Button type="primary" className="button-add-client">
+          Adicionar Cadastro
+        </Button>
       </div>
     );
   }

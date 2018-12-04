@@ -1,26 +1,30 @@
 import React, { Component } from "react";
-import logo from "./logo.svg";
-import { Button } from "antd";
 import "./App.css";
+import Business from "./components/Business/Business";
+
+class client {
+  constructor(name, company) {
+    this.name = name;
+    this.company = company;
+  }
+}
 
 class App extends Component {
+  state = {
+    page: "business",
+    clients: require("./baseClientes.json")
+  };
+
+  newClient = client => {
+    this.state.clients.push(client);
+    this.setState(this.state);
+  };
+
   render() {
+    console.log(this.state);
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Button type="primary">Button</Button>
-          </a>
-        </header>
+        {this.state.page === "business" ? <Business /> : ""}
       </div>
     );
   }

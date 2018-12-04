@@ -1,0 +1,15 @@
+#negocios {
+  margin-top: 50px;
+  margin-left: 30px;
+  margin-right: 30px;
+}
+
+.button-add-client {
+  height: 50px;
+  /* font-family: Lato; */
+  font-size: 18px;
+  font-weight: 500;
+  /* line-height: 62px; */
+  width: 220px;
+  text-align: center;
+}
