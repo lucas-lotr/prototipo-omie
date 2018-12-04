@@ -2,6 +2,7 @@
   "name": "prototipo-omie",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://lucas-lotr.github.io/prototipo-omie/",
   "dependencies": {
     "antd": "^3.11.0",
     "babel-plugin-import": "^1.11.0",
@@ -14,6 +15,8 @@
   "scripts": {
     "start": "react-app-rewired start",
     "build": "react-app-rewired build",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "test": "react-app-rewired test",
     "eject": "react-app-rewired eject"
   },
