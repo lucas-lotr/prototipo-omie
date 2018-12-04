@@ -17,7 +17,7 @@ class Business extends Component {
   }
 
   handleResize = event => {
-    let { smallDisplay, displayColumn } = this.state;
+    let { smallDisplay } = this.state;
     let shouldDiminish = window.innerWidth < 992;
     shouldDiminish = shouldDiminish && !smallDisplay;
     if (shouldDiminish) {
