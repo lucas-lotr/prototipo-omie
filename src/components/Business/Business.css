@@ -8,6 +8,48 @@
   margin-top: 30px;
 }
 
+.form-add-client h2 {
+  text-align: center;
+  font-weight: 700;
+}
+
+.form-add-client h3 {
+  font-weight: 700;
+}
+
+.select-etapa {
+  position: relative;
+}
+
+.select-etapa select {
+  /* background-color: transparent; */
+  width: 100%;
+}
+
+.input-valor {
+  width: 100%;
+}
+
+.submit-button {
+  background-color: #47525e;
+  color: white;
+  border-color: #47525e;
+}
+.submit-button:hover {
+  background-color: #657383;
+  color: white;
+  border-color: #47525e;
+}
+
+.cancel-button {
+  background-color: transparent;
+  border-color: transparent;
+}
+.cancel-button:hover {
+  background-color: transparent;
+  border-color: transparent;
+}
+
 .separator-title {
   background-color: #d1d8e0;
   width: 3px;

@@ -1,9 +1,20 @@
 import React, { Component } from "react";
-import { Button, Row, Col } from "antd";
+import {
+  Button,
+  Row,
+  Col,
+  Modal,
+  Form,
+  Input,
+  DatePicker,
+  InputNumber,
+  Select
+} from "antd";
 import "./Business.css";
 
 class Business extends Component {
   state = {
+    clientModalVisible: false,
     firstRun: true,
     smallDisplay: window.innerWidth < 992,
     displayColumn: [1, 1, 1, 1]
@@ -17,6 +28,10 @@ class Business extends Component {
   componentWillUnmount() {
     window.removeEventListener("resize", this.handleResize);
   }
+
+  setClientModalVisible = clientModalVisible => {
+    this.setState({ clientModalVisible });
+  };
 
   handleResize = event => {
     let { smallDisplay, firstRun } = this.state;
@@ -55,7 +70,7 @@ class Business extends Component {
   handleSelect = event => {
     let { selectedIndex } = event.target;
     let { displayColumn } = this.state;
-    console.log(displayColumn);
+
     for (let i = 0; i < displayColumn.length; i++) {
       if (i === selectedIndex) {
         displayColumn[i] = 1;
@@ -63,14 +78,32 @@ class Business extends Component {
         displayColumn[i] = 0;
       }
     }
-    console.log(displayColumn);
+
     this.setState(this.state);
+  };
+
+  handleSubmit = event => {
+    event.preventDefault();
+    console.log(event.target.name.value);
+    console.log(event.target.company.value);
+    console.log(event.target.title.value);
+    console.log(event.target.values.value);
+    console.log(event.target.stage.value);
+    console.log(event.target.budget.value);
+    console.log(
+      document.getElementById("deadline").childNodes[0].childNodes[0].value
+    );
   };
 
   render() {
     return (
       <div id="negocios">
-        <Button type="primary" className="button-add-client">
+        <Button
+          name="add-client"
+          type="primary"
+          className="button-add-client"
+          onClick={() => this.setClientModalVisible(true)}
+        >
           Adicionar Cadastro
         </Button>
         <br />
@@ -79,15 +112,117 @@ class Business extends Component {
           <div>
             <br />
             <select onChange={this.handleSelect}>
-              <option value="volvo">Clientes potenciais</option>
-              <option value="saab">Clientes qualificados</option>
-              <option value="mercedes">Propostas</option>
-              <option value="audi">Contrato</option>
+              <option>Clientes potenciais</option>
+              <option>Clientes qualificados</option>
+              <option>Propostas</option>
+              <option>Contrato</option>
             </select>
           </div>
         ) : (
           ""
         )}
+
+        {/* modal adicionar cliente */}
+
+        <Modal
+          title="20px to Top"
+          style={{ top: 20 }}
+          visible={this.state.clientModalVisible}
+          footer={null}
+          title={null}
+          closable={false}
+          onOk={() => this.setClientModalVisible(false)}
+          onCancel={() => this.setClientModalVisible(false)}
+        >
+          <Form
+            className="form-add-client"
+            layout="vertical"
+            onSubmit={this.handleSubmit}
+          >
+            <h2>Novo cadastro</h2>
+            <Input.Group size="large">
+              <Form.Item label="Nome do contato">
+                <Input type="text" name="name" />
+              </Form.Item>
+              <Form.Item label="Empresa / organização">
+                <Input type="text" name="company" />
+              </Form.Item>
+              <Form.Item label="Título do negócio">
+                <Input type="text" name="title" />
+              </Form.Item>
+              <Form.Item label="Valor">
+                <InputNumber
+                  size="large"
+                  className="input-valor"
+                  name="values"
+                  defaultValue={0}
+                  formatter={value =>
+                    `R$ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+                  }
+                  parser={value => value.replace("R$", "").replace(",", "")}
+                />
+              </Form.Item>
+              <Form.Item label="Etapa">
+                <div className="select-etapa">
+                  <select name="stage">
+                    <option>Clientes potenciais</option>
+                    <option>Clientes qualificados</option>
+                    <option>Propostas</option>
+                    <option>Contrato</option>
+                  </select>
+                </div>
+                {/* <Select defaultValue="lucy" onChange="">
+                  <Select.Option value="jack">Jack</Select.Option>
+                  <Select.Option value="lucy">Lucy</Select.Option>
+                  <Select.Option value="disabled">Disabled</Select.Option>
+                  <Select.Option value="Yiminghe">yiminghe</Select.Option>
+                </Select> */}
+              </Form.Item>
+              <hr />
+              <br />
+              <h3>Prioridade</h3>
+
+              <Form.Item label="Budget">
+                <InputNumber
+                  size="large"
+                  name="budget"
+                  className="input-valor"
+                  defaultValue={0}
+                  formatter={value =>
+                    `R$ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+                  }
+                  parser={value => value.replace("R$", "").replace(",", "")}
+                />
+              </Form.Item>
+              <Form.Item label="Prazo">
+                <DatePicker id="deadline" format="DD/MM/YYYY" />
+              </Form.Item>
+            </Input.Group>
+
+            <Row type="flex" justify="center">
+              <Col>
+                <Form.Item>
+                  <Button className="submit-button" htmlType="submit">
+                    Salvar
+                  </Button>
+                </Form.Item>
+              </Col>
+
+              <Col>
+                <Form.Item>
+                  <Button
+                    className="cancel-button"
+                    onClick={() => this.setClientModalVisible(false)}
+                  >
+                    <u>Cancelar</u>
+                  </Button>
+                </Form.Item>
+              </Col>
+            </Row>
+          </Form>
+        </Modal>
+
+        {/* fim modal adicionar cliente */}
 
         {/* titulo das colunas */}
 
