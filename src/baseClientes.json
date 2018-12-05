@@ -1,14 +1,29 @@
 [
   {
     "name": "a",
-    "company": "a"
+    "company": "a",
+    "title": "a",
+    "values": "a",
+    "stage": "a",
+    "budget": "a",
+    "deadline": "a"
   },
   {
     "name": "b",
-    "company": "b"
+    "company": "b",
+    "title": "b",
+    "values": "b",
+    "stage": "b",
+    "budget": "b",
+    "deadline": "b"
   },
   {
     "name": "c",
-    "company": "c"
+    "company": "c",
+    "title": "c",
+    "values": "c",
+    "stage": "c",
+    "budget": "c",
+    "deadline": "c"
   }
 ]
