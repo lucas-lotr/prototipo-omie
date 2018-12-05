@@ -4,12 +4,14 @@ import "./Business.css";
 
 class Business extends Component {
   state = {
+    firstRun: true,
     smallDisplay: window.innerWidth < 992,
     displayColumn: [1, 1, 1, 1]
   };
 
   componentDidMount() {
     window.addEventListener("resize", this.handleResize);
+    this.handleResize();
   }
 
   componentWillUnmount() {
@@ -17,27 +19,52 @@ class Business extends Component {
   }
 
   handleResize = event => {
-    let { smallDisplay } = this.state;
+    let { smallDisplay, firstRun } = this.state;
     let shouldDiminish = window.innerWidth < 992;
     shouldDiminish = shouldDiminish && !smallDisplay;
     if (shouldDiminish) {
       this.setState({
+        firstRun: false,
         smallDisplay: window.innerWidth < 992,
         displayColumn: [1, 0, 0, 0]
       });
       return;
     }
 
-    let shouldIncrease = window.innerWidth > 992;
+    let shouldIncrease = window.innerWidth >= 992;
     shouldIncrease = shouldIncrease && smallDisplay;
 
     if (shouldIncrease) {
       this.setState({
+        firstRun: false,
         smallDisplay: window.innerWidth < 992,
         displayColumn: [1, 1, 1, 1]
       });
       return;
     }
+    if (window.innerWidth < 992 && firstRun) {
+      this.setState({
+        firstRun: false,
+        smallDisplay: window.innerWidth < 992,
+        displayColumn: [1, 0, 0, 0]
+      });
+      return;
+    }
+  };
+
+  handleSelect = event => {
+    let { selectedIndex } = event.target;
+    let { displayColumn } = this.state;
+    console.log(displayColumn);
+    for (let i = 0; i < displayColumn.length; i++) {
+      if (i === selectedIndex) {
+        displayColumn[i] = 1;
+      } else {
+        displayColumn[i] = 0;
+      }
+    }
+    console.log(displayColumn);
+    this.setState(this.state);
   };
 
   render() {
@@ -47,6 +74,20 @@ class Business extends Component {
           Adicionar Cadastro
         </Button>
         <br />
+
+        {this.state.smallDisplay ? (
+          <div>
+            <br />
+            <select onChange={this.handleSelect}>
+              <option value="volvo">Clientes potenciais</option>
+              <option value="saab">Clientes qualificados</option>
+              <option value="mercedes">Propostas</option>
+              <option value="audi">Contrato</option>
+            </select>
+          </div>
+        ) : (
+          ""
+        )}
 
         {/* titulo das colunas */}
 
@@ -61,7 +102,7 @@ class Business extends Component {
               Clientes potenciais
             </p>
           </Col>
-          <Col className="separator-title" xs={1} />
+          <Col className="separator-title" xs={0} lg={1} />
           <Col
             className="column-title"
             xs={23 * this.state.displayColumn[1]}
@@ -72,7 +113,7 @@ class Business extends Component {
               Clientes qualificados
             </p>
           </Col>
-          <Col className="separator-title" xs={1} />
+          <Col className="separator-title" xs={0} lg={1} />
           <Col
             className="column-title"
             xs={23 * this.state.displayColumn[2]}
@@ -83,7 +124,7 @@ class Business extends Component {
               Propostas
             </p>
           </Col>
-          <Col className="separator-title" xs={1} />
+          <Col className="separator-title" xs={0} lg={1} />
           <Col
             className="column-title"
             xs={23 * this.state.displayColumn[3]}
@@ -111,7 +152,7 @@ class Business extends Component {
               Clientes potenciais
             </p>
           </Col>
-          <Col className="separator" xs={1} />
+          <Col className="separator" xs={0} lg={1} />
           <Col
             className="column"
             xs={23 * this.state.displayColumn[1]}
@@ -122,7 +163,7 @@ class Business extends Component {
               Clientes qualificados
             </p>
           </Col>
-          <Col className="separator" xs={1} />
+          <Col className="separator" xs={0} lg={1} />
           <Col
             className="column"
             xs={23 * this.state.displayColumn[2]}
@@ -133,7 +174,7 @@ class Business extends Component {
               Propostas
             </p>
           </Col>
-          <Col className="separator" xs={1} />
+          <Col className="separator" xs={0} lg={1} />
           <Col
             className="column"
             xs={23 * this.state.displayColumn[3]}
