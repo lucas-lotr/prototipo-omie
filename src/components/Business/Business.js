@@ -85,6 +85,9 @@ class Business extends Component {
 
   changeColumn = (id, fromColumn, toColumn) => {
     let { columnCards } = this.state;
+    if (fromColumn == toColumn) {
+      return;
+    }
     columnCards[fromColumn].splice(columnCards[fromColumn].indexOf(id), 1);
     columnCards[toColumn].push(id);
     // console.log(`${id} ${fromColumn} ${toColumn}`);
@@ -341,7 +344,6 @@ class Business extends Component {
             xs={23 * this.state.displayColumn[1]}
             lg={5 * this.state.displayColumn[1]}
           >
-            <br />
             {column1}
           </Col>
           <Col className="separator" xs={0} lg={1} />
@@ -350,7 +352,6 @@ class Business extends Component {
             xs={23 * this.state.displayColumn[2]}
             lg={5 * this.state.displayColumn[2]}
           >
-            <br />
             {column2}
           </Col>
           <Col className="separator" xs={0} lg={1} />
@@ -359,7 +360,6 @@ class Business extends Component {
             xs={23 * this.state.displayColumn[3]}
             lg={5 * this.state.displayColumn[3]}
           >
-            <br />
             {column3}
           </Col>
         </Row>

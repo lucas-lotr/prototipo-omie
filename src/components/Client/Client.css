@@ -2,7 +2,7 @@
   border: 2px solid #343f4b;
   border-radius: 4px;
   margin-top: 25px;
-  margin-left: 0px;
+  margin-left: 20px;
   margin-right: 20px;
   padding: 10px;
 }
@@ -46,7 +46,40 @@
   border-color: transparent;
   background-color: transparent;
 }
+.button-card-options:focus {
+  border-color: transparent;
+  background-color: transparent;
+}
+
+.button-card-delete {
+  padding: 5px;
+  border-color: transparent;
+  background-color: transparent;
+}
+
+.button-card-delete:hover {
+  border-color: transparent;
+  background-color: transparent;
+}
+.button-card-delete:focus {
+  border-color: transparent;
+  background-color: transparent;
+}
 
 .button-card-tasks {
-  background-color: transparent;
+  background-color: #47525e;
+  color: white;
+  border-color: #47525e;
+}
+
+.button-card-tasks:hover {
+  background-color: #657383;
+  color: white;
+  border-color: #47525e;
+}
+
+.button-card-tasks:focus {
+  background-color: #657383;
+  color: white;
+  border-color: #47525e;
 }

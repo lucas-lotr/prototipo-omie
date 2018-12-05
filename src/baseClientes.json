@@ -4,7 +4,6 @@
     "company": "Empresa Ômega",
     "title": "Plano Simples Nacional 6",
     "values": "R$ 420",
-    "stage": "a",
     "budget": "a",
     "deadline": "a"
   },
@@ -13,7 +12,6 @@
     "company": "b",
     "title": "b",
     "values": "b",
-    "stage": "b",
     "budget": "b",
     "deadline": "b"
   },
@@ -22,7 +20,6 @@
     "company": "c",
     "title": "c",
     "values": "c",
-    "stage": "c",
     "budget": "c",
     "deadline": "c"
   }
