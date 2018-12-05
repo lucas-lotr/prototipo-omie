@@ -7,17 +7,18 @@ import {
   Form,
   Input,
   DatePicker,
-  InputNumber,
-  Select
+  InputNumber
 } from "antd";
 import "./Business.css";
+import Client from "../Client/Client";
 
 class Business extends Component {
   state = {
     clientModalVisible: false,
     firstRun: true,
     smallDisplay: window.innerWidth < 992,
-    displayColumn: [1, 1, 1, 1]
+    displayColumn: [1, 1, 1, 1],
+    columnCards: [[0, 1, 2], [], [], []]
   };
 
   componentDidMount() {
@@ -82,6 +83,15 @@ class Business extends Component {
     this.setState(this.state);
   };
 
+  changeColumn = (id, fromColumn, toColumn) => {
+    let { columnCards } = this.state;
+    columnCards[fromColumn].splice(columnCards[fromColumn].indexOf(id), 1);
+    columnCards[toColumn].push(id);
+    // console.log(`${id} ${fromColumn} ${toColumn}`);
+    // console.log(this.state.columnCards);
+    this.setState(this.state);
+  };
+
   handleSubmit = event => {
     event.preventDefault();
     console.log(event.target.name.value);
@@ -96,6 +106,47 @@ class Business extends Component {
   };
 
   render() {
+    const column0 = this.state.columnCards[0].map(client => {
+      return (
+        <Client
+          key={client}
+          id={client}
+          col={0}
+          changeColumn={this.changeColumn}
+        />
+      );
+    });
+    const column1 = this.state.columnCards[1].map(client => {
+      return (
+        <Client
+          key={client}
+          id={client}
+          col={1}
+          changeColumn={this.changeColumn}
+        />
+      );
+    });
+    const column2 = this.state.columnCards[2].map(client => {
+      return (
+        <Client
+          key={client}
+          id={client}
+          col={2}
+          changeColumn={this.changeColumn}
+        />
+      );
+    });
+    const column3 = this.state.columnCards[3].map(client => {
+      return (
+        <Client
+          key={client}
+          id={client}
+          col={3}
+          changeColumn={this.changeColumn}
+        />
+      );
+    });
+    // console.log(column1);
     return (
       <div id="negocios">
         <Button
@@ -282,10 +333,7 @@ class Business extends Component {
             xs={23 * this.state.displayColumn[0]}
             lg={5 * this.state.displayColumn[0]}
           >
-            <p>
-              <br />
-              Clientes potenciais
-            </p>
+            {column0}
           </Col>
           <Col className="separator" xs={0} lg={1} />
           <Col
@@ -293,10 +341,8 @@ class Business extends Component {
             xs={23 * this.state.displayColumn[1]}
             lg={5 * this.state.displayColumn[1]}
           >
-            <p>
-              <br />
-              Clientes qualificados
-            </p>
+            <br />
+            {column1}
           </Col>
           <Col className="separator" xs={0} lg={1} />
           <Col
@@ -304,10 +350,8 @@ class Business extends Component {
             xs={23 * this.state.displayColumn[2]}
             lg={5 * this.state.displayColumn[2]}
           >
-            <p>
-              <br />
-              Propostas
-            </p>
+            <br />
+            {column2}
           </Col>
           <Col className="separator" xs={0} lg={1} />
           <Col
@@ -315,10 +359,8 @@ class Business extends Component {
             xs={23 * this.state.displayColumn[3]}
             lg={5 * this.state.displayColumn[3]}
           >
-            <p>
-              <br />
-              Contrato
-            </p>
+            <br />
+            {column3}
           </Col>
         </Row>
 
