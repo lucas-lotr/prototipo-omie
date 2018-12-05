@@ -4,4 +4,49 @@
   margin-top: 25px;
   margin-left: 0px;
   margin-right: 20px;
+  padding: 10px;
+}
+
+.card-name {
+  color: #00a6ff;
+  font-weight: 500;
+  line-height: 20px;
+  font-size: 20px;
+}
+
+.card-icon {
+  font-size: 26px;
+  color: #ff9052;
+}
+
+.card-company {
+  color: #969faa;
+  font-size: 18px;
+  font-weight: 400;
+}
+
+.card-title {
+  color: #343f4b;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.card-values {
+  color: #969faa;
+  font-size: 18px;
+  font-weight: 400;
+}
+
+.button-card-options {
+  border-color: transparent;
+  background-color: transparent;
+}
+
+.button-card-options:hover {
+  border-color: transparent;
+  background-color: transparent;
+}
+
+.button-card-tasks {
+  background-color: transparent;
 }

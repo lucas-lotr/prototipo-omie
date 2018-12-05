@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./Client.css";
-import { Button } from "antd";
+import { Icon, Row, Col, Button } from "antd";
 
 class Client extends Component {
   handleSelect = event => {
@@ -11,11 +11,36 @@ class Client extends Component {
     changeColumn(id, col, value);
   };
   render() {
-    const { id, col } = this.props;
+    const { id } = this.props;
+    const baseClientes = require("../../baseClientes.json");
     return (
       <div className="card" id={`card${id}`}>
-        card{id}
-        <div>
+        <Row type="flex" justify="space-between">
+          <Col>
+            <p className="card-name">{baseClientes[id].name}</p>
+          </Col>
+          <Col>
+            <Icon className="card-icon" type="up-circle" theme="filled" />
+          </Col>
+        </Row>
+        <p className="card-company">{baseClientes[id].company}</p>
+        <hr />
+        <p className="card-title">{baseClientes[id].title}</p>
+        <p className="card-values">{baseClientes[id].values}</p>
+
+        <Row type="flex" justify="space-between">
+          <Col>
+            <Button className="button-card-options">
+              <u>Opções</u>
+            </Button>
+          </Col>
+
+          <Col>
+            <Button className="button-card-tasks">Tarefas</Button>
+          </Col>
+        </Row>
+
+        <div hidden>
           <br />
           <select defaultValue="" onChange={this.handleSelect}>
             <option value="" disabled hidden>
