@@ -34,9 +34,52 @@ class Client extends Component {
     this.setEditClientModalVisible(false);
   };
 
+  calculateUrgency = (id, base) => {
+    let { budget } = base[id];
+
+    let val = budget.substring(budget.indexOf(" "), budget.length);
+
+    //console.log(val);
+
+    if (val > 150000) {
+      return "high";
+    }
+
+    if (val > 80000) {
+      return "medium";
+    }
+
+    if (val > 40000) {
+      return "average";
+    }
+
+    return "low";
+  };
+
+  getIconType = urgency => {
+    if (urgency === "high") {
+      return { type: "info-circle", fill: "filled", color: "#F95F62" };
+    }
+    if (urgency === "medium") {
+      return { type: "up-circle", fill: "filled", color: "#FF9052" };
+    }
+    if (urgency === "average") {
+      return { type: "minus-circle", fill: "filled", color: "#FFD185" };
+    }
+    if (urgency === "low") {
+      return { type: "down-circle", fill: "filled", color: "#77D353" };
+    }
+    return { type: "", fill: "", color: "" };
+  };
+
   render() {
     const { id } = this.props;
     const baseClientes = require("../../baseClientes.json");
+
+    let urgency = this.calculateUrgency(id, baseClientes);
+
+    let icon = this.getIconType(urgency);
+
     const popoverContent = (
       <div>
         <br />
@@ -180,7 +223,12 @@ class Client extends Component {
           </Col>
           <Col>
             <Popover placement="right" title={null} content="Urgência média">
-              <Icon className="card-icon" type="up-circle" theme="filled" />
+              <Icon
+                style={{ color: icon.color }}
+                className="card-icon"
+                type={icon.type}
+                theme="filled"
+              />
             </Popover>
           </Col>
         </Row>

@@ -13,7 +13,7 @@ import Report from "./components/Report/Report";
 
 class App extends Component {
   state = {
-    page: "report",
+    page: "business",
     clients: require("./baseClientes.json")
   };
 

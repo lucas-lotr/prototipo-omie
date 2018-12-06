@@ -18,7 +18,7 @@ class Business extends Component {
     firstRun: true,
     smallDisplay: window.innerWidth < 992,
     displayColumn: [1, 1, 1, 1],
-    columnCards: [[0, 1, 2], [], [], []]
+    columnCards: [[0, 1, 2, 3], [4], [], []]
   };
 
   componentDidMount() {
