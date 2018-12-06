@@ -37,6 +37,23 @@
   font-weight: 400;
 }
 
+.button-card-edit {
+  background-color: #47525e;
+  color: white;
+  border-color: #47525e;
+}
+.button-card-edit:hover {
+  background-color: #657383;
+  color: white;
+  border-color: #47525e;
+}
+
+.button-card-edit:focus {
+  background-color: #657383;
+  color: white;
+  border-color: #47525e;
+}
+
 .button-card-options {
   border-color: transparent;
   background-color: transparent;

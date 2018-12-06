@@ -213,7 +213,7 @@ class Business extends Component {
                   formatter={value =>
                     `R$ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
                   }
-                  parser={value => value.replace("R$", "").replace(",", "")}
+                  parser={value => value.replace("R$ ", "").replace(",", "")}
                 />
               </Form.Item>
               <Form.Item label="Etapa">
@@ -245,7 +245,7 @@ class Business extends Component {
                   formatter={value =>
                     `R$ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
                   }
-                  parser={value => value.replace("R$", "").replace(",", "")}
+                  parser={value => value.replace("R$ ", "").replace(",", "")}
                 />
               </Form.Item>
               <Form.Item label="Prazo">

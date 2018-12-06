@@ -1,8 +1,26 @@
 import React, { Component } from "react";
+import moment from "moment";
+import {
+  Icon,
+  Row,
+  Col,
+  Button,
+  Popover,
+  Modal,
+  Form,
+  Input,
+  InputNumber,
+  DatePicker
+} from "antd";
 import "./Client.css";
-import { Icon, Row, Col, Button, Popover, Tooltip } from "antd";
 
 class Client extends Component {
+  state = {
+    editClientModalVisible: false
+  };
+  setEditClientModalVisible = editClientModalVisible => {
+    this.setState({ editClientModalVisible });
+  };
   handleSelect = event => {
     const { id, col, changeColumn } = this.props;
     const { value } = event.target;
@@ -10,6 +28,12 @@ class Client extends Component {
     event.target.value = "";
     changeColumn(id, col, value);
   };
+
+  handleSubmit = event => {
+    event.preventDefault();
+    this.setEditClientModalVisible(false);
+  };
+
   render() {
     const { id } = this.props;
     const baseClientes = require("../../baseClientes.json");
@@ -27,6 +51,13 @@ class Client extends Component {
           <option value="3">Contrato</option>
         </select>
         <br />
+        <Button
+          onClick={() => this.setEditClientModalVisible(true)}
+          className="button-card-edit"
+          icon="edit"
+        >
+          <u>Editar</u>
+        </Button>
         <Button className="button-card-delete" icon="delete">
           <u>Excluir</u>
         </Button>
@@ -34,6 +65,115 @@ class Client extends Component {
     );
     return (
       <div className="card" id={`card${id}`}>
+        {/* modal editar cliente */}
+
+        <Modal
+          title="20px to Top"
+          style={{ top: 20 }}
+          visible={this.state.editClientModalVisible}
+          footer={null}
+          title={null}
+          closable={false}
+          onOk={() => this.setEditClientModalVisible(false)}
+          onCancel={() => this.setEditClientModalVisible(false)}
+        >
+          <Form
+            className="form-add-client"
+            layout="vertical"
+            onSubmit={this.handleSubmit}
+          >
+            <h2>Novo cadastro</h2>
+            <Input.Group size="large">
+              <Form.Item label="Nome do contato">
+                <Input
+                  defaultValue={baseClientes[id].name}
+                  type="text"
+                  name="name"
+                />
+              </Form.Item>
+              <Form.Item label="Empresa / organização">
+                <Input
+                  defaultValue={baseClientes[id].company}
+                  type="text"
+                  name="company"
+                />
+              </Form.Item>
+              <Form.Item label="Título do negócio">
+                <Input
+                  defaultValue={baseClientes[id].title}
+                  type="text"
+                  name="title"
+                />
+              </Form.Item>
+              <Form.Item label="Valor">
+                <InputNumber
+                  size="large"
+                  className="input-valor"
+                  name="values"
+                  defaultValue={baseClientes[id].values.substring(
+                    baseClientes[id].values.indexOf(" "),
+                    baseClientes[id].values.length
+                  )}
+                  formatter={value =>
+                    `R$ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+                  }
+                  parser={value => value.replace("R$ ", "").replace(",", "")}
+                />
+              </Form.Item>
+
+              <hr />
+              <br />
+              <h3>Prioridade</h3>
+
+              <Form.Item label="Budget">
+                <InputNumber
+                  size="large"
+                  name="budget"
+                  className="input-valor"
+                  defaultValue={baseClientes[id].budget.substring(
+                    baseClientes[id].budget.indexOf(" "),
+                    baseClientes[id].budget.length
+                  )}
+                  formatter={value =>
+                    `R$ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+                  }
+                  parser={value => value.replace("R$ ", "").replace(",", "")}
+                />
+              </Form.Item>
+              <Form.Item label="Prazo">
+                <DatePicker
+                  defaultValue={moment(baseClientes[id].deadline, "DD/MM/YYYY")}
+                  id="deadline"
+                  format="DD/MM/YYYY"
+                />
+              </Form.Item>
+            </Input.Group>
+
+            <Row type="flex" justify="center">
+              <Col>
+                <Form.Item>
+                  <Button className="submit-button" htmlType="submit">
+                    Salvar
+                  </Button>
+                </Form.Item>
+              </Col>
+
+              <Col>
+                <Form.Item>
+                  <Button
+                    className="cancel-button"
+                    onClick={() => this.setEditClientModalVisible(false)}
+                  >
+                    <u>Cancelar</u>
+                  </Button>
+                </Form.Item>
+              </Col>
+            </Row>
+          </Form>
+        </Modal>
+
+        {/* fim modal editar cliente */}
+
         <Row type="flex" justify="space-between">
           <Col>
             <p className="card-name">{baseClientes[id].name}</p>
