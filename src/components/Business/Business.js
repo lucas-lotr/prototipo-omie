@@ -7,7 +7,8 @@ import {
   Form,
   Input,
   DatePicker,
-  InputNumber
+  InputNumber,
+  Icon
 } from "antd";
 import "./Business.css";
 import Client from "../Client/Client";
@@ -291,7 +292,9 @@ class Business extends Component {
               Clientes potenciais
             </p>
           </Col>
-          <Col className="separator-title" xs={0} lg={1} />
+          <Col className="separator-title" xs={0} lg={1}>
+            <Icon type="right" />
+          </Col>
           <Col
             className="column-title"
             xs={23 * this.state.displayColumn[1]}

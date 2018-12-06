@@ -82,21 +82,3 @@
   border-color: transparent;
   background-color: transparent;
 }
-
-.button-card-tasks {
-  background-color: #47525e;
-  color: white;
-  border-color: #47525e;
-}
-
-.button-card-tasks:hover {
-  background-color: #657383;
-  color: white;
-  border-color: #47525e;
-}
-
-.button-card-tasks:focus {
-  background-color: #657383;
-  color: white;
-  border-color: #47525e;
-}

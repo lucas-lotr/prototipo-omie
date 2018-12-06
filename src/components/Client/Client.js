@@ -13,6 +13,7 @@ import {
   DatePicker
 } from "antd";
 import "./Client.css";
+import Balloon from "../Balloon/Balloon";
 
 class Client extends Component {
   state = {
@@ -252,7 +253,7 @@ class Client extends Component {
           </Col>
 
           <Col>
-            <Button className="button-card-tasks">Tarefas ></Button>
+            <Balloon />
           </Col>
         </Row>
       </div>
