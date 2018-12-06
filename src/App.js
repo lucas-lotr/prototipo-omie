@@ -20,6 +20,10 @@ class App extends Component {
     this.setState(this.state);
   };
 
+  switchPage = page => {
+    this.setState({ page: page });
+  };
+
   render() {
     console.log(this.state);
     return (
