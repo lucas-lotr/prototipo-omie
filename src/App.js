@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "./App.css";
 import Business from "./components/Business/Business";
 import Header from "./components/Header/Header";
+import Report from "./components/Report/Report";
 
 // class client {
 //   constructor(name, company) {
@@ -12,7 +13,7 @@ import Header from "./components/Header/Header";
 
 class App extends Component {
   state = {
-    page: "business",
+    page: "report",
     clients: require("./baseClientes.json")
   };
 
@@ -31,6 +32,7 @@ class App extends Component {
       <div className="App">
         <Header switchPage={this.switchPage} />
         {this.state.page === "business" ? <Business /> : ""}
+        {this.state.page === "report" ? <Report /> : ""}
       </div>
     );
   }

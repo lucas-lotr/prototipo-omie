@@ -25,7 +25,7 @@ class Header extends Component {
               >
                 Relatórios
               </Button>
-              <Button className="button-search" icon="search" onClick="" />
+              <Button className="button-search" icon="search" />
             </Col>
           </Row>
         </div>
