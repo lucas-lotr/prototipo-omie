@@ -253,7 +253,7 @@ class Client extends Component {
           </Col>
 
           <Col>
-            <Balloon />
+            <Balloon id={id} />
           </Col>
         </Row>
       </div>

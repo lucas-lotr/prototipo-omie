@@ -6,11 +6,9 @@ import {
   Popover,
   Form,
   Input,
-  Modal,
+  Row,
+  Col,
   DatePicker,
-  MonthPicker,
-  RangePicker,
-  WeekPicker,
   TimePicker
 } from "antd";
 const { TextArea } = Input;
@@ -19,7 +17,8 @@ class Balloon extends Component {
   state = {
     addingTask: false,
     visible: false,
-    modalVisible: false
+    modalVisible: false,
+    tasks: [[], [], [], [], []]
   };
 
   handleSwitchTask = () => {
@@ -38,96 +37,107 @@ class Balloon extends Component {
     }
   };
 
-  showModal = () => {
-    this.setState({
-      modalVisible: true
-    });
-  };
+  handleSubmit = event => {
+    let { id } = this.props;
+    let { task, time, responsible, obs } = event.target;
+    let { tasks } = this.state;
+    event.preventDefault();
 
-  handleOk = e => {
-    console.log(e);
-    this.setState({
-      modalVisible: false
-    });
-  };
+    let taskObj = {
+      task: task.value,
+      taskName: task.childNodes[task.selectedIndex].text,
+      when: document.getElementById(`when${id}`).childNodes[0].childNodes[0]
+        .value,
+      time: time.value,
+      responsible: responsible.value,
+      responsibleName: responsible.childNodes[responsible.selectedIndex].text,
+      obs: obs.value
+    };
 
-  handleCancel = e => {
-    console.log(e);
-    this.setState({
-      modalVisible: false
-    });
+    tasks[id][tasks[id].length] = taskObj;
   };
 
   render() {
+    const taskList = (
+      <Button onClick={this.handleSwitchTask}>Adicionar tarefa</Button>
+    );
+
+    const form = (
+      <Form onSubmit={this.handleSubmit}>
+        <Form.Item className="select-etapa">
+          <select name="task">
+            <option value="call">Ligação</option>
+            <option value="email">E-mail</option>
+            <option value="meeting">Reunião</option>
+            {/* <option>D</option> */}
+          </select>
+        </Form.Item>
+        <Form.Item>
+          <DatePicker
+            id={`when${this.props.id}`}
+            name="when"
+            defaultValue={moment(
+              moment(Date.now()).format("DD/MM/YYYY"),
+              "DD/MM/YYYY"
+            )}
+            format="DD/MM/YYYY"
+            label="Em"
+            size="large"
+          />
+        </Form.Item>
+        <Form.Item>
+          <TimePicker
+            name="time"
+            defaultValue={moment(moment(Date.now()).format("HH:00"), "HH:mm")}
+            format={"HH:mm"}
+            size="large"
+          />
+        </Form.Item>
+        <Form.Item className="select-etapa" label="Atribuido à">
+          <select name="responsible">
+            <option value="general">Geral</option>
+            <option value="private">Particular</option>
+            <option value="public">Público</option>
+            {/* <option>Filler</option> */}
+          </select>
+        </Form.Item>
+        <Form.Item className="select-etapa">
+          <TextArea name="obs" rows={4} />
+        </Form.Item>
+        <Row type="flex" justify="end">
+          <Col>
+            <Form.Item>
+              <Button className="submit-button" htmlType="submit">
+                Salvar
+              </Button>
+            </Form.Item>
+          </Col>
+
+          <Col>
+            <Form.Item>
+              <Button
+                className="cancel-button"
+                onClick={() => this.handleVisibleChange(false)}
+              >
+                <u>Cancelar</u>
+              </Button>
+            </Form.Item>
+          </Col>
+        </Row>
+      </Form>
+    );
+
     return (
       <Popover
         className="button-card-tasks"
-        content={
-          this.state.addingTask ? (
-            ""
-          ) : (
-            <Button onClick={(this.handleSwitchTask, this.showModal)}>
-              Adicionar tarefa
-            </Button>
-          )
-        }
+        content={this.state.addingTask ? form : taskList}
         title={null}
         trigger="click"
         placement="right"
         visible={this.state.visible}
         onVisibleChange={this.handleVisibleChange}
       >
-        <Button>Tarefa ></Button>
-        {/* modal adicionar tarefa */}
-
-        <div>
-          <Modal
-            visible={this.state.modalVisible}
-            onOk={this.handleOk}
-            onCancel={this.handleCancel}
-            zIndex={1050}
-          >
-            <Form.Item>
-              <div className="select-etapa">
-                <select name="stage">
-                  <option>A</option>
-                  <option>B</option>
-                  <option>C</option>
-                  <option>D</option>
-                </select>
-              </div>
-            </Form.Item>
-            <Form.Item>
-              <div>
-                <DatePicker label="Em" size="large" />
-              </div>
-            </Form.Item>
-            <Form.Item>
-              <div>
-                <TimePicker
-                  defaultValue={moment("12:08", "HH:mm")}
-                  format={"HH:mm"}
-                  size="large"
-                />
-              </div>
-            </Form.Item>
-            <Form.Item>
-              <div className="select-etapa" label="Atribuido à">
-                <select name="stage">
-                  <option>Geral</option>
-                  <option>Particular</option>
-                  <option>Público</option>
-                  <option>Filler</option>
-                </select>
-              </div>
-            </Form.Item>
-            <Form.Item>
-              <div className="select-etapa">
-                <TextArea rows={4} />
-              </div>
-            </Form.Item>
-          </Modal>
-        </div>
+        <Button className="button-card-tasks">Tarefa ></Button>
       </Popover>
     );
   }
