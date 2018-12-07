@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "./Balloon.css";
+import moment from "moment";
 import {
   Button,
   Popover,
@@ -9,7 +10,8 @@ import {
   DatePicker,
   MonthPicker,
   RangePicker,
-  WeekPicker
+  WeekPicker,
+  TimePicker
 } from "antd";
 const { TextArea } = Input;
 
@@ -96,12 +98,16 @@ class Balloon extends Component {
             </Form.Item>
             <Form.Item>
               <div>
-                <DatePicker label="Em" />
+                <DatePicker label="Em" size="large" />
               </div>
             </Form.Item>
             <Form.Item>
               <div>
-                <DatePicker label="Às" />
+                <TimePicker
+                  defaultValue={moment("12:08", "HH:mm")}
+                  format={"HH:mm"}
+                  size="large"
+                />
               </div>
             </Form.Item>
             <Form.Item>
