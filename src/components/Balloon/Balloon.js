@@ -85,6 +85,7 @@ class Balloon extends Component {
             visible={this.state.modalVisible}
             onOk={this.handleOk}
             onCancel={this.handleCancel}
+            zIndex={10000}
           >
             <Form.Item>
               <div className="select-etapa">
