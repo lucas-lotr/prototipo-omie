@@ -15,3 +15,8 @@
   color: white;
   border-color: #47525e;
 }
+
+.task-list-button {
+  background-color: transparent;
+  border: transparent;
+}

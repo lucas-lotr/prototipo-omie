@@ -55,11 +55,35 @@ class Balloon extends Component {
     };
 
     tasks[id][tasks[id].length] = taskObj;
+
+    this.setState({
+      addingTask: false
+    });
   };
 
   render() {
+    let { id } = this.props;
+    let { tasks } = this.state;
+
+    let i = 0;
+
     const taskList = (
-      <Button onClick={this.handleSwitchTask}>Adicionar tarefa</Button>
+      <div>
+        {tasks[id].length > 0
+          ? tasks[id].map(task => {
+              return (
+                <div key={i++}>
+                  <Button className="task-list-button">{task.taskName}</Button>
+                  <br />
+                  <br />
+                </div>
+              );
+            })
+          : ""}
+        <Button className="button-card-tasks" onClick={this.handleSwitchTask}>
+          Adicionar tarefa
+        </Button>
+      </div>
     );
 
     const form = (
