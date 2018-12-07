@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import "./App.css";
 import Business from "./components/Business/Business";
+import Header from "./components/Header/Header";
+import Report from "./components/Report/Report";
 
 // class client {
 //   constructor(name, company) {
@@ -20,11 +22,17 @@ class App extends Component {
     this.setState(this.state);
   };
 
+  switchPage = page => {
+    this.setState({ page: page });
+  };
+
   render() {
-    console.log(this.state);
+    //console.log(this.state);
     return (
       <div className="App">
+        <Header switchPage={this.switchPage} />
         {this.state.page === "business" ? <Business /> : ""}
+        {this.state.page === "report" ? <Report /> : ""}
       </div>
     );
   }

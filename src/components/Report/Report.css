@@ -1,0 +1,30 @@
+#report {
+  padding: 30px;
+}
+
+#report h1 {
+  margin-top: 30px;
+  color: #47525e;
+  font-size: 28px;
+  font-weight: 530;
+}
+
+.selectors {
+  margin-top: 40px;
+}
+
+.selector {
+  margin-right: 10px;
+  width: 200px;
+}
+
+.button-export {
+  height: 40px;
+  /* font-family: Lato; */
+  font-size: 18px;
+  font-weight: 500;
+  /* line-height: 62px; */
+  width: 220px;
+  text-align: center;
+  margin-left: 8.2%;
+}
