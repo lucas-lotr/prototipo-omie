@@ -281,7 +281,7 @@ class Business extends Component {
 
         {/* titulo das colunas */}
 
-        <Row className="row-title">
+        <Row className="row-title" type="flex" justify="center">
           <Col
             className="column-title"
             xs={23 * this.state.displayColumn[0]}
@@ -333,7 +333,7 @@ class Business extends Component {
 
         {/* colunas */}
 
-        <Row className="row">
+        <Row className="row" type="flex" justify="center">
           <Col
             className="column"
             xs={23 * this.state.displayColumn[0]}
