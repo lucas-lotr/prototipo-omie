@@ -73,6 +73,22 @@ class Client extends Component {
     return { type: "", fill: "", color: "" };
   };
 
+  getUrgencyText = urgency => {
+    if (urgency === "high") {
+      return "alta";
+    }
+    if (urgency === "medium") {
+      return "média";
+    }
+    if (urgency === "average") {
+      return "normal";
+    }
+    if (urgency === "low") {
+      return "baixa";
+    }
+    return "";
+  };
+
   render() {
     const { id } = this.props;
     const baseClientes = require("../../baseClientes.json");
@@ -80,6 +96,8 @@ class Client extends Component {
     let urgency = this.calculateUrgency(id, baseClientes);
 
     let icon = this.getIconType(urgency);
+
+    let urgencyText = `Urgência ${this.getUrgencyText(urgency)}`;
 
     const popoverContent = (
       <div>
@@ -224,7 +242,7 @@ class Client extends Component {
             <p className="card-name">{baseClientes[id].name}</p>
           </Col>
           <Col>
-            <Popover placement="right" title={null} content="Urgência média">
+            <Popover placement="right" title={null} content={urgencyText}>
               <Icon
                 style={{ color: icon.color }}
                 className="card-icon"
