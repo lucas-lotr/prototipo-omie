@@ -169,6 +169,14 @@ class Client extends Component {
               <br />
               <h3>Prioridade</h3>
 
+              <Form.Item label="Prazo">
+                <DatePicker
+                  defaultValue={moment(baseClientes[id].deadline, "DD/MM/YYYY")}
+                  id="deadline"
+                  format="DD/MM/YYYY"
+                />
+              </Form.Item>
+
               <Form.Item label="Budget">
                 <InputNumber
                   size="large"
@@ -182,13 +190,6 @@ class Client extends Component {
                     `R$ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
                   }
                   parser={value => value.replace("R$ ", "").replace(",", "")}
-                />
-              </Form.Item>
-              <Form.Item label="Prazo">
-                <DatePicker
-                  defaultValue={moment(baseClientes[id].deadline, "DD/MM/YYYY")}
-                  id="deadline"
-                  format="DD/MM/YYYY"
                 />
               </Form.Item>
             </Input.Group>

@@ -237,6 +237,10 @@ class Business extends Component {
               <br />
               <h3>Prioridade</h3>
 
+              <Form.Item label="Prazo">
+                <DatePicker id="deadline" format="DD/MM/YYYY" />
+              </Form.Item>
+
               <Form.Item label="Budget">
                 <InputNumber
                   size="large"
@@ -248,9 +252,6 @@ class Business extends Component {
                   }
                   parser={value => value.replace("R$ ", "").replace(",", "")}
                 />
-              </Form.Item>
-              <Form.Item label="Prazo">
-                <DatePicker id="deadline" format="DD/MM/YYYY" />
               </Form.Item>
             </Input.Group>
 
