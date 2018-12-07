@@ -6,9 +6,14 @@ class Report extends Component {
   render() {
     return (
       <div id="report">
-        <h1>Novo relatório</h1>
+        <Row type="flex">
+          <Col span={18} offset={2}>
+            <h1>Novo relatório</h1>
+          </Col>
+        </Row>
+
         <hr />
-        <Row type="flex" justify="start" className="selectors">
+        <Row type="flex" justify="center" className="selectors">
           <Col>
             <select className="selector">
               <option>Cadastros</option>
@@ -46,7 +51,9 @@ class Report extends Component {
           </Col>
         </Row>
         <br />
-        <Button type="primary">Exportar</Button>
+        <Button type="primary" className="button-export">
+          Exportar
+        </Button>
       </div>
     );
   }
